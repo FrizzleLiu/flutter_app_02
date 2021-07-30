@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_02/config/string.dart';
 import 'package:flutter_app_02/http/http_manager.dart';
 import 'package:flutter_app_02/util/Toast.dart';
+import 'package:flutter_app_02/viewmodel/tab_navigation_viewmodel.dart';
+import 'package:flutter_app_02/widget/provider_widget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class TabNavigation extends StatefulWidget {
@@ -13,10 +15,7 @@ class TabNavigation extends StatefulWidget {
 
 class _TabNavigationState extends State<TabNavigation> {
   DateTime? _lastTime;
-  Widget _curBody = Container(
-    color: Colors.blue,
-  );
-  var _currentIndex = 0;
+  PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +23,39 @@ class _TabNavigationState extends State<TabNavigation> {
       //防止误碰,双击退出app
       onWillPop: _onWillPop,
       child: Scaffold(
-        body: _curBody,
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          ///文字固定
-          unselectedItemColor: Colors.grey,
-          selectedItemColor: Colors.black,
-          type: BottomNavigationBarType.fixed,
-          items: _buildBottomNavigationBarItems(),
-          onTap: _onTap,
+        body: PageView(
+          ///PageView禁止滑动
+          physics: NeverScrollableScrollPhysics(),
+          controller: _pageController,
+          ///占位
+          children: [
+            Container(color: Colors.blue),
+            Container(color: Colors.green),
+            Container(color: Colors.grey),
+            Container(color: Colors.yellow),
+          ],
+        ),
+        bottomNavigationBar: ProviderWidget<TabNavigationViewmodel>(
+          model: TabNavigationViewmodel(),
+          builder: (context, model, child) {
+            return BottomNavigationBar(
+              currentIndex: model.currentIdex,
+
+              ///文字固定
+              unselectedItemColor: Colors.grey,
+              selectedItemColor: Colors.black,
+              type: BottomNavigationBarType.fixed,
+              items: _buildBottomNavigationBarItems(),
+              onTap: (index) {
+                if (model.currentIdex != index) {
+                  debugPrint("index : $index");
+                  _pageController.jumpToPage(index);
+                  //通知刷新UI
+                  model.changeBottomTabIndex(index);
+                }
+              },
+            );
+          },
         ),
       ),
     );
@@ -41,10 +64,14 @@ class _TabNavigationState extends State<TabNavigation> {
   ///导航栏items
   List<BottomNavigationBarItem> _buildBottomNavigationBarItems() {
     return [
-      _buildItemStyle(StringConfig.home, "images/ic_home_normal.png", "images/ic_home_selected.png"),
-      _buildItemStyle(StringConfig.discovery, "images/ic_discovery_normal.png", "images/ic_discovery_selected.png"),
-      _buildItemStyle(StringConfig.hot, "images/ic_hot_normal.png", "images/ic_hot_selected.png"),
-      _buildItemStyle(StringConfig.mine, "images/ic_mine_normal.png", "images/ic_mine_selected.png"),
+      _buildItemStyle(StringConfig.home, "images/ic_home_normal.png",
+          "images/ic_home_selected.png"),
+      _buildItemStyle(StringConfig.discovery, "images/ic_discovery_normal.png",
+          "images/ic_discovery_selected.png"),
+      _buildItemStyle(StringConfig.hot, "images/ic_hot_normal.png",
+          "images/ic_hot_selected.png"),
+      _buildItemStyle(StringConfig.mine, "images/ic_mine_normal.png",
+          "images/ic_mine_selected.png"),
     ];
   }
 
@@ -77,23 +104,9 @@ class _TabNavigationState extends State<TabNavigation> {
     }
   }
 
-  ///底部导航栏点击
-  void _onTap(int index) {
-    _currentIndex = index;
-    switch (index){
-      case 0:
-        _curBody = Container(color: Colors.blue,);
-        break;
-      case 1:
-        _curBody = Container(color: Colors.green,);
-        break;
-      case 2:
-        _curBody = Container(color: Colors.red,);
-        break;
-      case 3:
-        _curBody = Container(color: Colors.yellow,);
-        break;
-    }
-    setState(() {});
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
   }
 }
