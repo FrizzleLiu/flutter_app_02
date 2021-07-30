@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app_02/ui/tab_navigation.dart';
 
 import 'config/string.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  // This ui.widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -52,12 +53,12 @@ class BuildMaterialAppWidhet extends StatefulWidget {
 class _BuildMaterialAppWidhetState extends State<BuildMaterialAppWidhet> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: StringConfig.app_name,
       initialRoute: "/",
-      routes: {
-        '/': (BuildContext context) => widget.child,
-      },
+      getPages: [
+        GetPage(name: "/", page: () => widget.child),
+      ],
     );
   }
 }

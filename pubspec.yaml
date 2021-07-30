@@ -48,7 +48,10 @@ dev_dependencies:
   flutter_splash_screen: ^0.3.0
   fluttertoast: ^8.0.7
   http: ^0.13.3
+  #状态管理
   provider: ^5.0.0
+  #路由管理
+  get: 4.2.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
