@@ -27,7 +27,7 @@ class ProviderWidget<T extends ChangeNotifier> extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ProviderWidgetState createState() => _ProviderWidgetState();
+  _ProviderWidgetState createState() => _ProviderWidgetState<T>();
 }
 
 class _ProviderWidgetState<T extends ChangeNotifier>
