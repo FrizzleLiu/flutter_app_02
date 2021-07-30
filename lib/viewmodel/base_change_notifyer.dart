@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app_02/ui/widget/loading_state_widget.dart';
 
 class BaseChangeNotifyer with ChangeNotifier {
+  ViewState viewState = ViewState.LOADING;
   bool _isDispose = false;
 
   @override

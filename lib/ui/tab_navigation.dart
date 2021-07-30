@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_02/config/string.dart';
 import 'package:flutter_app_02/http/http_manager.dart';
+import 'package:flutter_app_02/ui/page/home/home_body_page.dart';
+import 'package:flutter_app_02/ui/page/home/home_page.dart';
 import 'package:flutter_app_02/ui/widget/provider_widget.dart';
 import 'package:flutter_app_02/util/Toast.dart';
 import 'package:flutter_app_02/viewmodel/tab_navigation_viewmodel.dart';
@@ -29,7 +31,7 @@ class _TabNavigationState extends State<TabNavigation> {
           controller: _pageController,
           ///占位
           children: [
-            Container(color: Colors.blue),
+            HomePage(),
             Container(color: Colors.green),
             Container(color: Colors.grey),
             Container(color: Colors.yellow),

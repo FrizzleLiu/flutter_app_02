@@ -52,6 +52,10 @@ dev_dependencies:
   provider: ^5.0.0
   #路由管理
   get: 4.2.4
+  #banner轮播
+  card_swiper: ^1.0.2
+  #带缓存的图片加载
+  extended_image: ^4.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
