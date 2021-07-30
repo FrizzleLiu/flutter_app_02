@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app_02/config/string.dart';
+import 'package:flutter_app_02/http/http_manager.dart';
 import 'package:flutter_app_02/util/Toast.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
