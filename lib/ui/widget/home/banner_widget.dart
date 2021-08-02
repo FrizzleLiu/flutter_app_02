@@ -3,6 +3,8 @@ import 'package:flutter_app_02/util/cache_image.dart';
 import 'package:flutter_app_02/viewmodel/home/home_page_viewmodel.dart';
 import 'package:card_swiper/card_swiper.dart';
 
+import 'customer_swiper_pagination.dart';
+
 class BannerWidget extends StatelessWidget {
   final HomePageViewmodel model;
 
@@ -53,7 +55,7 @@ class BannerWidget extends StatelessWidget {
       },
       itemCount: model.bannerList?.length ?? 0,
       // banner 指示器
-      pagination: const SwiperPagination(
+      pagination: const CustomerSwiperPagination(
         // 位置：右下角
         alignment: Alignment.bottomRight,
         // 指示器的样式
