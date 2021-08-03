@@ -123,16 +123,8 @@ class ListItemWidget extends StatelessWidget {
     return ClipOval(
       ///抗锯齿
       clipBehavior: Clip.antiAlias,
-      child: cacheImage(_getAuthorHeaderImg(item) ?? ""),
+      child: cacheImage(item.data?.author?.icon ?? "", width: 48, height: 48),
     );
-  }
-
-  String? _getAuthorHeaderImg(Item item) {
-    if (item.data?.author == null) {
-      return item.data?.provider?.icon ?? "";
-    } else {
-      item.data?.author?.icon ?? "";
-    }
   }
 
   ///视频内容简介
@@ -170,6 +162,12 @@ class ListItemWidget extends StatelessWidget {
 
   ///分享按钮
   _shareButton() {
-    return IconButton(onPressed: () => share(item.data?.title ?? "分享标题",item.data?.playUrl ?? ""), icon: const Icon(Icons.share,color: Colors.black38,));
+    return IconButton(
+        onPressed: () =>
+            share(item.data?.title ?? "分享标题", item.data?.playUrl ?? ""),
+        icon: const Icon(
+          Icons.share,
+          color: Colors.black38,
+        ));
   }
 }
