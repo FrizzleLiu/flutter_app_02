@@ -7,19 +7,19 @@ enum ViewState{
 }
 
 class LoadingStateWidget extends StatelessWidget {
-  final ViewState? loadingState;
+  final ViewState? viewState;
   final VoidCallback? retry;
   final Widget child;
 
-  LoadingStateWidget({Key? key, this.loadingState, this.retry, required this.child}) : super(key:key);
+  LoadingStateWidget({Key? key, this.viewState, this.retry, required this.child}) : super(key:key);
 
 
   @override
   Widget build(BuildContext context) {
-    if(loadingState == ViewState.LOADING){
+    if(viewState == ViewState.LOADING){
       debugPrint("状态: _loadWidget");
       return _loadWidget;
-    }else if(loadingState == ViewState.ERROR){
+    }else if(viewState == ViewState.ERROR){
       debugPrint("状态: _errorWidget");
       return _errorWidget;
     }else {

@@ -56,6 +56,16 @@ dev_dependencies:
   card_swiper: ^1.0.2
   #带缓存的图片加载
   extended_image: ^4.1.0
+  #下拉刷新
+  pull_to_refresh: ^2.0.0
+  # 依赖于Dart常用工具库common_utils,以及对其它第三方库的封装
+  flustars: ^2.0.1
+  #分享相关
+  share_plus: ^2.1.4
+  #视频播放
+  video_player: ^2.1.12
+  #A video player for Flutter with Cupertino and Material play controls
+  chewie: ^1.2.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

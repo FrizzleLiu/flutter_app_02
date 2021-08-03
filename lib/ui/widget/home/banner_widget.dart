@@ -50,7 +50,7 @@ class BannerWidget extends StatelessWidget {
         );
       },
       onTap: (index) {
-        print("点击了banner图。。$index}");
+        debugPrint("点击了banner图。。$index}");
         // TODO：跳转 detail
       },
       itemCount: model.bannerList?.length ?? 0,
